@@ -1,138 +1,81 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { View, Text } from 'react-native';
+import React from 'react';
+import styled from 'styled-components/native';
 
-const FlexDirectionBasics = () => {
-  const [flexDirection, setflexDirection] = useState("column");
-    const [direction, setDirection] = useState("ltr");
-
+const PositionScreen = () => {
   return (
-    <PreviewLayout
-      title="Example"
-      flexDirectionExample="Example"
-      directionValues={["ltr", "rtl"]}
-      flexDirectionValues={["column", "row", "row-reverse", "column-reverse"]}
-      selectedFlexDirection={flexDirection}
-      selectedDirection={direction}
-      setSelectedFlexDirection={setflexDirection}
-      setSelectedDirection={setDirection}
-    >
-      <View
-        style={[styles.box, { backgroundColor: "powderblue" }]}
-      />
-      <View
-        style={[styles.box, { backgroundColor: "skyblue" }]}
-      />
-      <View
-        style={[styles.box, { backgroundColor: "steelblue" }]}
-      />
-    </PreviewLayout>
+    <StyledView>
+      <Purple />
+      <Orange />
+      <Green />
+      <Red />
+    </StyledView>
   );
 };
 
-const PreviewLayout = ({
-  title,
-  flexDirectionExample,
-  directionValues,
-  flexDirectionValues,
-  selectedFlexDirection,
-  setSelectedFlexDirection,
-  setSelectedDirection,
-  selectedDirection,
-  children,
-}) => (
-  <View style={{ padding: 10, flex: 1 }}>
-    <Text style={styles.label}>{title}</Text>
-    <View style={styles.row}>
-      {flexDirectionValues.map(value => (
-        <TouchableOpacity
-          key={value}
-          onPress={() => setSelectedFlexDirection(value)}
-          style={[
-            styles.button,
-            selectedFlexDirection === value && styles.selected,
-          ]}
-        >
-          <Text
-            style={[
-              styles.buttonLabel,
-              selectedFlexDirection === value && styles.selectedLabel,
-            ]}
-          >
-            {value}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-    <View style={styles.row}>
-      {directionValues.map(value => (
-        <TouchableOpacity
-          key={value}
-          onPress={() => setSelectedFlexDirection(value)}
-          style={[
-            styles.button,
-            flexDirectionValues === value && styles.selected,
-          ]}
-        >
-          <Text
-            style={[
-              styles.buttonLabel,
-              flexDirectionValues === value && styles.selectedLabel,
-            ]}
-          >
-            {value}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-    <View style={[styles.container, { [flexDirectionExample]: setSelectedFlexDirection }]}>
-      {children}
-    </View>
-  </View>
-);
+export default PositionScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 8,
-    backgroundColor: "aliceblue",
-    flexWrap: 'wrap',
-  },
-  box: {
-    width: 50,
-    height: 50,
-  },
-  row: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  button: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    backgroundColor: "oldlace",
-    alignSelf: "flex-start",
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    minWidth: "48%",
-    textAlign: "center",
-  },
-  selected: {
-    backgroundColor: "coral",
-    borderWidth: 0,
-  },
-  buttonLabel: {
-    fontSize: 12,
-    fontWeight: "500",
-    color: "coral",
-  },
-  selectedLabel: {
-    color: "white",
-  },
-  label: {
-    textAlign: "center",
-    marginBottom: 10,
-    fontSize: 24,
-  },
-});
+const StyledView = styled.View`
+  flex: 1; 
+  background: #0b5363;
+  justify-content: center;
+  align-items: center;
+`;
 
-export default FlexDirectionBasics;
+const Purple = styled.View`
+  width: 100px;
+  height: 100px;
+  background: #c914c69d;
+  border: 10px solid white;
+  /* top: 50px; */
+  position: absolute;
+  /* bottom: 0px; */
+  /* right: 50px; */
+  /* left: 50px; */
+  /* z-index: 3; */
+  bottom: 0px;
+  right: 0;
+  `;
+
+const Green = styled.View`
+  width: 100px;
+  height: 100px;
+  background: #159215b7;
+  border: 10px solid white;
+  /* top: 50px; */
+  position: absolute;
+  /* bottom: 0px; */
+  /* right: 50px; */
+  /* left: 50px; */
+  /* z-index: 3; */
+  bottom: 0px;
+  left: 0;
+`;
+
+const Red = styled.View`
+  width: 100px;
+  height: 100px;
+  background: #9b0e0ee5;
+  border: 10px solid white;
+  /* top: 50px; */
+  position: absolute;
+  /* bottom: 0px; */
+  /* right: 50px; */
+  /* left: 50px; */
+  /* z-index: 3; */
+  top: 0px;
+  left: 0;
+`;
+
+const Orange = styled.View`
+  width: 100px;
+  height: 100px;
+  background: #e4941bcc;
+  border: 10px solid white;
+  /* bottom: 100px; */
+  position: absolute;
+  /* bottom: 0%; */
+  right: 0px;
+  top: 0px;
+  /* left: 50px; */
+`;
