@@ -51,16 +51,21 @@ const calcReducer = (state: typeof INITIAL_STATE, { type, payload }: { type: str
     case Actions.PERCENTAGE:
       return { prev: state.current, current: `${+state.current / 100}`, action: type };
     case Actions.FLOATING:
-      return { prev: '', current: `${state.current}.`, action: '' }
+      return { ...state, current: `${state.current.includes('.') ? state.current : state.current.concat('.') }` }
     case Actions.DIVIDE:
     case Actions.MULTIPLY:
     case Actions.SUBSTRAC:
     case Actions.ADD:
       return { prev: state.current, current: '0', action: payload };
     case Actions.EQUAL:
-      return { prev: '', current: eval(`${state.prev} ${state.action} ${state.current}`), action: Actions.EQUAL  };
+      return { prev: '', current: `${eval(`${state.prev} ${state.action} ${state.current}`)}`, action: Actions.EQUAL };
     default:
-      return { ...state, current: state.action === Actions.EQUAL ? payload : `${state.current === '0' ? '' : state.current}${payload}`, action: state.action === Actions.EQUAL ? '' : state.action };
+      return {
+        ...state,
+        current:
+          state.action === Actions.EQUAL ? payload : `${state.current === '0' ? '' : state.current}${payload}`,
+        action: state.action === Actions.EQUAL ? '' : state.action,
+      };
   }
 };
 
@@ -74,7 +79,7 @@ const CalculatorScreen = () => {
     }
   }, [numbers]);
 
-  console.log(history);
+  console.log(numbers)
 
   return (
     <View>
