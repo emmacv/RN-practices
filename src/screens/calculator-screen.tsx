@@ -1,6 +1,8 @@
 import React from 'react'
+import { useWindowDimensions } from 'react-native';
 import styled from 'styled-components/native';
 import Button from '../components/buttons/calculator/button';
+import useCalculator from '../hooks/use-calculator';
 
 enum Actions {
   CLEAR = 'clear',
@@ -40,52 +42,18 @@ const keys = [
   ],
 ];
 
-const INITIAL_STATE = { prev: '', current: '0', action: '' };
-
-const calcReducer = (state: typeof INITIAL_STATE, { type, payload }: { type: string; payload: string }) => {
-  switch (type) {
-    case Actions.CLEAR:
-      return INITIAL_STATE;
-    case Actions.SIGN:
-      return { prev: '', current: `${-state.current}`, action: ''};
-    case Actions.PERCENTAGE:
-      return { prev: state.current, current: `${+state.current / 100}`, action: type };
-    case Actions.FLOATING:
-      return { ...state, current: `${state.current.includes('.') ? state.current : state.current.concat('.') }` }
-    case Actions.DIVIDE:
-    case Actions.MULTIPLY:
-    case Actions.SUBSTRAC:
-    case Actions.ADD:
-      return { prev: state.current, current: '0', action: payload };
-    case Actions.EQUAL:
-      return { prev: '', current: `${eval(`${state.prev} ${state.action} ${state.current}`)}`, action: Actions.EQUAL };
-    default:
-      return {
-        ...state,
-        current:
-          state.action === Actions.EQUAL ? payload : `${state.current === '0' ? '' : state.current}${payload}`,
-        action: state.action === Actions.EQUAL ? '' : state.action,
-      };
-  }
-};
-
 const CalculatorScreen = () => {
-  const [numbers, calcDispatcher] = React.useReducer(calcReducer, INITIAL_STATE);
-  const [history, setHistory] = React.useState<string[]>([]);
+  const { prev, current, calculate } = useCalculator();
 
-  React.useEffect(() => {
-    if (numbers.action === Actions.EQUAL) {
-      setHistory(prev => [...prev , numbers.current]);
-    }
-  }, [numbers]);
-
-  console.log(numbers)
+  const { width } = useWindowDimensions();
 
   return (
-    <View>
+    <View width={width}>
       <StatusBar />
-      <Prev>{numbers.prev}</Prev>
-      <Result>{numbers.current}</Result>
+      <TextView>
+        {!!prev && <Prev>{prev}</Prev>}
+        <Result adjustsFontSizeToFit>{current}</Result>
+      </TextView>
         <ButtonsView>
           {keys.map((row, index) => (
             <Row key={index}>
@@ -96,7 +64,7 @@ const CalculatorScreen = () => {
                   background={key.color}
                   large={key.large}
                   action={key.action}
-                  onPress={calcDispatcher}
+                  onPress={calculate}
                 />
               ))}
             </Row>
@@ -108,11 +76,12 @@ const CalculatorScreen = () => {
 
 export default CalculatorScreen;
 
-const View = styled.View`
+const View = styled.View<{ width: number }>`
   background: black;
   flex: 1;
   padding: 0 20px;
   justify-content: flex-end;
+  ${({ width }) => width > 360 ? 'flex-direction: row;' : '' }
 `;
 
 const Result = styled.Text`
@@ -137,3 +106,5 @@ const Row = styled.View`
 `;
 
 const ButtonsView = styled.View``;
+
+const TextView = styled.View``;

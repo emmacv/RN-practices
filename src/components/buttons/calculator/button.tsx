@@ -9,7 +9,7 @@ interface Props {
   onPress: React.Dispatch<{
     type: any;
     payload: any;
-  }>
+  }>;
 }
 
 const Button: React.FC<Props> = ({ text: key, background ='#2d2d2d', large = false, action = 'number', onPress }) => {
