@@ -16,6 +16,10 @@ export type RootStackParamas = {
 
 const Stack = createStackNavigator<RootStackParamas>();
 
+
+
+
+
 const Stacknavigator = () => {
   return (
     <Stack.Navigator
