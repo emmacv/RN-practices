@@ -10,7 +10,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import Tabs from './tab';
 import CalculatorScreen from '../screens/calculator-screen';
-
+import PositionScreen from '../screens/position-screen';
 
 const Drawer = createDrawerNavigator();
 
@@ -34,6 +34,7 @@ const LateralDrawer = () => {
       <Drawer.Screen name="Home" options={{ title: 'Home' }} component={Screen2} />
       <Drawer.Screen name="StackNavigator" options={{ title: 'StackNavigator' }} component={Stacknavigator} />
       <Drawer.Screen name="Calculator" options={{ title: 'Calculator' }} component={CalculatorScreen} />
+      <Drawer.Screen name="PositionScreen" options={{ title: 'PositionScreen' }} component={PositionScreen} />
     </Drawer.Navigator>
   );
 };
@@ -53,13 +54,16 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
       </ProfileImageContainer>
       <MenuContainer>
         <MenuOption onPress={() => navigation.navigate('Home')}>
-          <MenuOptionText>Home</MenuOptionText>
+          <MenuOptionText>Homes</MenuOptionText>
         </MenuOption>
         <MenuOption onPress={() => navigation.navigate('Tabs')}>
           <MenuOptionText>Tabs</MenuOptionText>
         </MenuOption>
         <MenuOption onPress={() => navigation.navigate('Calculator')}>
           <MenuOptionText>Calculator</MenuOptionText>
+        </MenuOption>
+        <MenuOption onPress={() => navigation.navigate('PositionScreen')}>
+          <MenuOptionText>PositionScreen</MenuOptionText>
         </MenuOption>
         <MenuOption onPress={() => navigation.navigate('StackNavigator')}>
           <MenuOptionText>StackNavigator</MenuOptionText>

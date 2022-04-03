@@ -1,5 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
+import { useAuth } from '../context/auth-context';
+
 
 const BoxObjectModelScreen = () => {
   return (

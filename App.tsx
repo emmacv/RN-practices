@@ -8,6 +8,10 @@ import DimensionsScreens from './src/screens/dimensions-screens';
 import FlexScreen from './src/screens/flex-screen';
 import LateralDrawer from './src/navigation/lateral-drawer';
 import Tabs from './src/navigation/tab';
+import AuthProvider from './src/context/auth-context';
+import MoviesNavigation from './src/navigation/movies-navigation';
+import FadeIn from './src/screens/fade-in';
+import GradientProvider from './src/context/gradient-context';
 // import BoxObjectModelScreen from './src/screens/box-object-model';
 // import Counter from './src/screens/view'
 // import PositionScreen from './src/screens/position-screen';
@@ -19,12 +23,25 @@ const App = () => {
   // return <CalculatorScreen />
     return (
     <NavigationContainer>
-      {/* <Stacknavigator /> */}
-      {/* <StackDrawer /> */}
-      <LateralDrawer />
-      {/* <Tabs /> */}
+      {/* <AppProviders> */}
+        {/* <Stacknavigator /> */}
+        {/* <StackDrawer /> */}
+        {/* <LateralDrawer /> */}
+        {/* <Tabs /> */}
+      {/* </AppProviders> */}
+      <GradientProvider>
+        <MoviesNavigation />
+      </GradientProvider>
+      {/* <FadeIn /> */}
     </NavigationContainer>
+
   );
 };
+
+const AppProviders = ({ children }) => (
+  <AuthProvider>
+    {children}
+  </AuthProvider>
+)
 
 export default App;
