@@ -6,7 +6,7 @@ import { Movie } from '../types/movie-types';
 
 export type RootStackParams = {
   Home: undefined;
-  Details: { movie: Movie};
+  Details: { movie: Movie };
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -18,13 +18,13 @@ const MoviesNavigation = () => {
         headerShown: false,
         cardStyle: {
           backgroundColor: '#f4f',
-        }
+        },
       }}
     >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
 export default MoviesNavigation;

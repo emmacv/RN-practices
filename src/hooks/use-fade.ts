@@ -22,7 +22,7 @@ const useFade = (start: number, end: number, duration: number) => {
       .start(() => callback && callback());
   };
 
-  const fadeOut = (duration: number = 300) => {
+  const fadeOut = (duration: number = 300, callback?: Function) => {
     Animated.timing(
       opacity, 
       {
@@ -31,7 +31,7 @@ const useFade = (start: number, end: number, duration: number) => {
         useNativeDriver: true,
       },
     )
-      .start(() => console.log('finished!'))
+      .start(() => callback && callback())
   };
 
   return {

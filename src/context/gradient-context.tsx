@@ -18,13 +18,13 @@ export const useGradientColor = () => useContext(GradientContext);
 const GradientContext = React.createContext({} as ImageColorsContextType);
 
 const GradientProvider = ({ children }) => {
-  const [currentColors, setCurrentColors] = React.useState({
-    primary: 'transparent',
-    secondary: 'transparent',
-  });
   const [previousColors, setPreviousColors] = React.useState({
     primary: '#45a',
     secondary: '#3ff',
+  });
+  const [currentColors, setCurrentColors] = React.useState({
+    primary: 'transparent',
+    secondary: 'transparent',
   });
 
   return (

@@ -24,7 +24,6 @@ const Home = () => {
   React.useEffect(() => {
     if (movies?.[0]?.length)
       getFilmPoster(0);
-    console.log('Home');
   }, [movies]);
 
   if (isLoading) 

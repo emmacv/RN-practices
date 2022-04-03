@@ -23,8 +23,6 @@ const useMovies = (urlArray: string[]) => {
     })();
   }, []);
 
-  console.log('custom Hook rendered!');
-
   return {
     movies,
     isLoading,

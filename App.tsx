@@ -1,7 +1,7 @@
-import 'react-native-gesture-handler'
+import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { View, Text } from 'react-native'
+import { View, Text } from 'react-native';
 import Stacknavigator from './src/navigation/stack-navigator';
 import CalculatorScreen from './src/screens/calculator-screen';
 import DimensionsScreens from './src/screens/dimensions-screens';
@@ -12,6 +12,7 @@ import AuthProvider from './src/context/auth-context';
 import MoviesNavigation from './src/navigation/movies-navigation';
 import FadeIn from './src/screens/fade-in';
 import GradientProvider from './src/context/gradient-context';
+import FlatListMenuItem from './src/screens/components/FlatListMenuItem';
 // import BoxObjectModelScreen from './src/screens/box-object-model';
 // import Counter from './src/screens/view'
 // import PositionScreen from './src/screens/position-screen';
@@ -21,27 +22,23 @@ const App = () => {
   // return <DimensionsScreens />;
   // return <FlexScreen />;
   // return <CalculatorScreen />
-    return (
+  return (
     <NavigationContainer>
       {/* <AppProviders> */}
-        {/* <Stacknavigator /> */}
-        {/* <StackDrawer /> */}
-        {/* <LateralDrawer /> */}
-        {/* <Tabs /> */}
+      {/* <Stacknavigator /> */}
+      {/* <StackDrawer /> */}
+      {/* <LateralDrawer /> */}
+      {/* <Tabs /> */}
       {/* </AppProviders> */}
-      <GradientProvider>
+      {/* <GradientProvider>
         <MoviesNavigation />
-      </GradientProvider>
+      </GradientProvider> */}
       {/* <FadeIn /> */}
+      <FlatListMenuItem />
     </NavigationContainer>
-
   );
 };
 
-const AppProviders = ({ children }) => (
-  <AuthProvider>
-    {children}
-  </AuthProvider>
-)
+const AppProviders = ({ children }) => <AuthProvider>{children}</AuthProvider>;
 
 export default App;

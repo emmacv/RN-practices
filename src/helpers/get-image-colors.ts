@@ -14,7 +14,6 @@ const getImageColors = async (url: string) => {
       colors.vibrant,
     ];
   }
-  console.log(colors);
   return result;
 };
 

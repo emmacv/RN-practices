@@ -26,6 +26,9 @@ export const GradientBackground = ({ children }: Props) => {
     });
   }, [currentColors]);
 
+  console.log('prev ----->', previousColors);
+  console.log('current ----->', currentColors);
+
   return (
     <View style={{ flex: 1 }}>
       <LinearGradient
