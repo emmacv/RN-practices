@@ -13,6 +13,8 @@ import MoviesNavigation from './src/navigation/movies-navigation';
 import FadeIn from './src/screens/fade-in';
 import GradientProvider from './src/context/gradient-context';
 import FlatListMenuItem from './src/screens/components/FlatListMenuItem';
+import HomeScreen from './src/screens/HomeScreen';
+import StackNavigator02 from './src/navigation/stack-navigator-02';
 // import BoxObjectModelScreen from './src/screens/box-object-model';
 // import Counter from './src/screens/view'
 // import PositionScreen from './src/screens/position-screen';
@@ -34,7 +36,7 @@ const App = () => {
         <MoviesNavigation />
       </GradientProvider> */}
       {/* <FadeIn /> */}
-      <FlatListMenuItem />
+      <StackNavigator02 />
     </NavigationContainer>
   );
 };

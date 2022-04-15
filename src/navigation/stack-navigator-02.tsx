@@ -7,6 +7,7 @@ import Screen3 from '../screens/screen3';
 import Animation102 from '../screens/Animation102';
 import Animation101 from '../screens/Animation101';
 import Components from '../screens/components/FlatListMenuItem';
+import HomeScreen from '../screens/HomeScreen';
 
 export type RootStackParamas = {
   Animation102Screen: undefined;
@@ -16,11 +17,7 @@ export type RootStackParamas = {
 
 const Stack = createStackNavigator<RootStackParamas>();
 
-
-
-
-
-const Stacknavigator = () => {
+const StackNavigator02 = () => {
   return (
     <Stack.Navigator
       initialRouteName="HomeScreen"
@@ -30,9 +27,9 @@ const Stacknavigator = () => {
     >
       <Stack.Screen name="Animation101Screen" component={Animation101} />
       <Stack.Screen name="Animation102Screen" component={Animation102} />
-      <Stack.Screen name="HomeScreen" component={Components} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
 
-export default Stacknavigator;
+export default StackNavigator02;

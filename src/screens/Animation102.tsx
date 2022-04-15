@@ -16,7 +16,7 @@ const Container = styled.View`
 `;
 
 const PurpleElement = styled.View`
-  background-color: '#5856d6';
+  background-color: #c21a1aec;
   width: 150px;
   height: 150px;
 `;

@@ -29,10 +29,7 @@ const FlatListMenuItem = ({ item: { icon, name, component } }: Props) => {
   const { navigate } = useNavigation();
 
   return (
-    <Container
-      activeOpacity={0.5}
-      onPress={() => navigate(component as Screens)}
-    >
+    <Container activeOpacity={0.5} onPress={() => navigate(component)}>
       <StyledIcon name={icon} color="red" size={25} />
       <Text>{name}</Text>
       <ArrowIcon name="chevron-forward-outline" color="red" size={25} />
@@ -40,24 +37,7 @@ const FlatListMenuItem = ({ item: { icon, name, component } }: Props) => {
   );
 };
 
-const Components = () => {
-  const [state, setState] = React.useState(0);
-
-  console.log('rendered');
-
-  return (
-    <View style={{}}>
-      <FlatList
-        data={MENU_ITEMS}
-        renderItem={({ item }) => <FlatListMenuItem item={item} />}
-        keyExtractor={(item) => item.name}
-        ListHeaderComponent={() => <Text>Header</Text>}
-      />
-    </View>
-  );
-};
-
-export default Components;
+export default FlatListMenuItem;
 
 const Container = styled.TouchableOpacity`
   /* justify-content: flex-start; */
