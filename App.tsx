@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { View, Text } from 'react-native';
-import Stacknavigator from './src/navigation/stack-navigator';
+import Stacknavigator from './src/navigation/stack-navigator-02';
 import CalculatorScreen from './src/screens/calculator-screen';
 import DimensionsScreens from './src/screens/dimensions-screens';
 import FlexScreen from './src/screens/flex-screen';
@@ -34,7 +34,8 @@ const App = () => {
         <MoviesNavigation />
       </GradientProvider> */}
       {/* <FadeIn /> */}
-      <FlatListMenuItem />
+      {/* <FlatListMenuItem /> */}
+      <Stacknavigator />
     </NavigationContainer>
   );
 };

@@ -16,7 +16,7 @@ export type RootStackParamas = {
 
 const Stack = createStackNavigator<RootStackParamas>();
 
-const Stacknavigator = () => {
+const StackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName="HomeScreen"
@@ -31,4 +31,4 @@ const Stacknavigator = () => {
   );
 };
 
-export default Stacknavigator;
+export default StackNavigator;
