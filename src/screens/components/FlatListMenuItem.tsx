@@ -3,6 +3,7 @@ import { FlatList, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/core';
+import { useTheme } from '../../context/theme-provider';
 
 type Screens = 'Animation101Screen' | 'Animation102Screen';
 
@@ -41,9 +42,11 @@ const FlatListMenuItem = ({ item: { icon, name, component } }: Props) => {
 };
 
 const Components = () => {
-  const [state, setState] = React.useState(0);
+  const [, setTheme] = useTheme();
 
-  console.log('rendered');
+  const onToggleTheme = (theme: 'light' | 'dark') => () => {
+    setTheme({ type: theme });
+  };
 
   return (
     <View style={{}}>
@@ -52,12 +55,36 @@ const Components = () => {
         renderItem={({ item }) => <FlatListMenuItem item={item} />}
         keyExtractor={(item) => item.name}
         ListHeaderComponent={() => <Text>Header</Text>}
+        ListFooterComponent={
+          <Footer>
+            <StyledButton black onPress={onToggleTheme('dark')}>
+                <Text>
+                  Dark
+                </Text>
+              </StyledButton>
+            <StyledButton onPress={onToggleTheme('light')}>
+              <Text>
+                Light
+              </Text>
+            </StyledButton>
+          </Footer>
+        }
       />
     </View>
   );
 };
 
 export default Components;
+
+const Footer = styled.View`
+  background-color: blueviolet;
+`;
+
+const StyledButton = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.9,
+})<{ black?: boolean }>`
+  background-color: ${({ black }) => (black ? '#0f0f1d' : '#e7dada')};
+`;
 
 const Container = styled.TouchableOpacity`
   /* justify-content: flex-start; */
