@@ -6,18 +6,23 @@ interface Config {
   params: {
     limit: number;
     page: number;
-    offset?: number;
+    offset: number;
   }
 }
 
 const usePokemonApi = ({ params }: Config) => {
   const [data, setData] = React.useState<PokemonSingleType[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [offset, setOffset] = React.useState(params.offset);
 
-  const { limit, page, offset } = params;
+  const { limit } = params;
 
   const mapPokemons = (pokemonArray: PokemonResultType[]) => pokemonArray.map(pokemon => {
-    const [id] = /(?<=\/)\d+/.exec?.(pokemon?.url) as RegExpExecArray;
+   const [id] = /(?<=\/)\d+/.exec?.(pokemon?.url) as RegExpExecArray;
+/*    const url = pokemon?.url.split("/");
+   const id = url[url.length - 2]; */
+
+   console.log(id);
 
     return {
       ...pokemon,
@@ -26,24 +31,30 @@ const usePokemonApi = ({ params }: Config) => {
     };
   });
 
+  const loadItems = async () => {
+    try {
+      const result = await axiosInstance.get<PokemonType, AxiosResponse<PokemonType>>(`/?offset=${offset}&limit=${limit}`);
+
+      setData(prev => [...prev, ...mapPokemons(result.data.results)]);
+
+      setOffset(prev => prev + limit);
+    } catch (error) {
+
+    } finally {
+      setIsLoading(false);
+    }
+
+  };
+
   React.useEffect(() => {
-    (async () => {
-      try {
-        const result = await axiosInstance.get<PokemonType, AxiosResponse<PokemonType>>(`/?offset${offset || limit}&limit${limit}`);
-        
-        setData(prev => [...prev, ...mapPokemons(result.data.results)]);
-      } catch (error) {
-        
-      } finally {
-        setIsLoading(false);
-      }
-    })();
+    loadItems();
   }, []);
 
   return {
     data,
     isLoading,
     setIsLoading,
+    loadItems,
   }
 
 };
