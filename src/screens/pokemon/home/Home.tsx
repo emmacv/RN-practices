@@ -7,8 +7,8 @@ import { FlashList } from "@shopify/flash-list";
 import { FlatList } from 'react-native-gesture-handler';
 import Item from './components/Item';
 
-const renderItem = ({ item }: { item: PokemonSingleType }) => (
-  <Item uri={item.pictureUrl}/>
+const renderItem = ({ item, index }: { item: PokemonSingleType }) => (
+  <Item uri={item.pictureUrl} item={{ ...{ ...item, number: index  } }}/>
 );
 
 const LIMIT = 40;
@@ -35,6 +35,7 @@ const Home = () => {
         onEndReached={loadItems}
         onEndReachedThreshold={0.5}
         numColumns={2}
+        columnWrapperStyle={{ justifyContent: 'space-evenly' }}
       />
     </Container>
   )
