@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import PokeballImage from '../../../../assets/images/pokebola-blanca.png';
-
+import ImageColor from 'react-native-image-colors';
+import { Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
 interface Props {
   uri: string;
   item: PokemonSingleType;
@@ -10,23 +12,39 @@ interface Props {
 const initialColor = 'grey';
 
 const Item = ({ uri, item }: Props) => {
+  const { navigate } = useNavigation();
   const [backgroundColor, setBackgroundColor] = React.useState(initialColor);
 
   React.useEffect(() => {
+    let update = true;
+
     (async () => {
-      const d = 
+      const d = await ImageColor.getColors(uri, {
+        fallback: 'grey',
+      });
+      update = true;
+
+      if (update) {
+        setBackgroundColor(d.platform === 'android' ? d.dominant : d.background);
+      }
     })();
+
+    return () => {
+      update = false;
+    }
   }, []);
 
+  const onSelect = () => navigate('Details', { item: { ...item, color: backgroundColor } });
+
   return (
-    <Container activeOpacity={0.8}>
+    <ColorContainer activeOpacity={0.8} style={{ backgroundColor }} onPress={onSelect}>
       <Text>{item.name}</Text>
-      <Text>#{item.number}</Text>
+      <Text>#{item.number + 1}</Text>
       <ItemImage source={{ uri }} resizeMode="contain" />
       <PokeballContainer>
         <PokeballImg source={PokeballImage}/>
       </PokeballContainer>
-    </Container>
+    </ColorContainer>
   );
 };
 export default Item;
@@ -49,11 +67,10 @@ const ItemImage = styled.Image`
   right: -40%;
 `;
 
-const Container = styled.TouchableOpacity`
+const ColorContainer = styled.TouchableOpacity`
   height: 100px;
   width: 44%;
   padding: 10px 12px;
-  background-color: red;
   margin: 16px 0;
   border-radius: 10px;
   ${shadow}

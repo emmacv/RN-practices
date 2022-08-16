@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "jsx": "react-native",
+    "baseUrl": "./src",
+    "resolveJsonModule": true,
+    "paths": {
+      "@hooks": ["hooks/*"]
+    },
+    "esModuleInterop": true
+  }
+}

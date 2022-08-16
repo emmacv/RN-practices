@@ -18,11 +18,9 @@ const usePokemonApi = ({ params }: Config) => {
   const { limit } = params;
 
   const mapPokemons = (pokemonArray: PokemonResultType[]) => pokemonArray.map(pokemon => {
-   const [id] = /(?<=\/)\d+/.exec?.(pokemon?.url) as RegExpExecArray;
+   const [id] = /(?<=\/)\d+/.exec(pokemon?.url) as RegExpExecArray;
 /*    const url = pokemon?.url.split("/");
    const id = url[url.length - 2]; */
-
-   console.log(id);
 
     return {
       ...pokemon,

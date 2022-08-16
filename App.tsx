@@ -19,7 +19,7 @@ import { ThemeContext } from 'styled-components';
 // import BoxObjectModelScreen from './src/screens/box-object-model';
 // import Counter from './src/screens/view'
 // import PositionScreen from './src/screens/position-screen';
-import PokemonNavigator from './src/navigation/pokemon';
+import { PokemonTabNavigation } from './src/navigation/pokemon';
 
 
 const App = () => {
@@ -46,7 +46,7 @@ const App = () => {
         {/* <FadeIn /> */}
         {/* <FlatListMenuItem /> */}
 {/*         <Stacknavigator /> */}
-        <PokemonNavigator />
+        <PokemonTabNavigation />
       </NavigationContainer>
     </MainThemeProvider>
   );
